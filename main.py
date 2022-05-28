@@ -13,21 +13,21 @@ pygame.font.init()
 # Constants
 
 FPS = 60
-INITIAL_STATUS = 0
+INITIAL_state = 2
 GAME_TITLE = 'Astro Rider'
 
 class Game:
     '''
-    Status 0: Start menu (Play button, settings, level select, exit game)
-    Status 1: In game (Actual gameplay)
-    Status 2: Pause menu (Resume, settings, return to start menu, exit game)
+    state 0: Start menu (Play button, settings, level select, exit game)
+    state 1: In game (Actual gameplay)
+    state 2: Pause menu (Resume, settings, return to start menu, exit game)
     '''
-    def __init__(self, fps, title, status):
+    def __init__(self, fps, title, state):
         
         self.FPS = fps
         self.TITLE = title
         
-        self.__status = status # Start menu
+        self.__state = state # Start menu
         
         display_info = pygame.display.Info()
         self.SIZE = self.WIDTH, self.HEIGHT = int(display_info.current_w/2), int(display_info.current_h/2)
@@ -40,8 +40,7 @@ class Game:
         self.__run = True
         
         self.data = {
-            'status': status,
-            'level': None,
+            'state': state,
             'run': True
         }
     
@@ -55,14 +54,14 @@ class Game:
                 if event.type == pygame.QUIT:
                     self.__quit_game()
                     
-            if self.__status == 1:
+            if self.__state == 1:
                 self.data = self.__play.render(self)
-            elif self.__status == 0:
+            elif self.__state == 0:
                 self.data = self.__start.render(self)
-            elif self.__status == 2:
+            elif self.__state == 2:
                 self.data = self.__pause.render(self)
             
-            self.__status = self.data['status']
+            self.__state = self.data['state']
             pygame.display.update()
             
             
@@ -77,7 +76,7 @@ if __name__ == '__main__':
     game = Game(
         fps = FPS,
         title = GAME_TITLE,
-        status = INITIAL_STATUS
+        state = INITIAL_state
     )
     game.run()
         

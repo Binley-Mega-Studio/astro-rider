@@ -13,8 +13,7 @@ class Start:
         game.window.fill((255,0,0))
         
         return {
-            'status': self.status,
-            'level': None,
+            'state': self.status,
             'run': True
         }
         

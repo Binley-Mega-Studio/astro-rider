@@ -13,7 +13,9 @@ class Play:
         self.player = astronaut.Player()
         
     def render(self, game):
+        
         game.window.fill((48, 48, 48))
+        
         self.player.render(game)
         
 

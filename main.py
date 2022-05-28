@@ -13,7 +13,7 @@ pygame.font.init()
 # Constants
 
 FPS = 60
-INITIAL_state = 2
+INITIAL_state = 1
 GAME_TITLE = 'Astro Rider'
 
 class Game:
@@ -48,7 +48,7 @@ class Game:
         clock = pygame.time.Clock()
         
         while self.__run:
-            clock.tick(self.FPS)
+            self.dt = clock.tick(self.FPS) * .001 * self.FPS
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -64,13 +64,12 @@ class Game:
             self.__state = self.data['state']
             pygame.display.update()
             
-            
     def get_data(self):
         return self.data
     
     def __quit_game(self):
         self.__run = False 
-
+        
 
 if __name__ == '__main__':
     game = Game(

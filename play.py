@@ -1,5 +1,7 @@
 import pygame
 from pygame.locals import *
+from sprites import astronaut
+
 
 class Play:
     '''
@@ -7,12 +9,15 @@ class Play:
     Contents: (Actual gameplay)
     '''
     def __init__(self):
-        self.status = 1
-
+        self.state = 1
+        self.player = astronaut.Player()
+        
     def render(self, game):
-        game.window.fill((0, 255, 0))
+        game.window.fill((48, 48, 48))
+        self.player.render(game)
+        
 
         return {
-            'state': self.status,
+            'state': self.state,
             'run': True
         }

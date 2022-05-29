@@ -27,7 +27,7 @@ class Game:
         self.FPS = fps
         self.TITLE = title
         
-        self.__state = state # Start menu
+        self.__state = state # Start menu   #change back to state just testing
         
         display_info = pygame.display.Info()
         self.SIZE = self.WIDTH, self.HEIGHT = int(display_info.current_w/2), int(display_info.current_h/2)

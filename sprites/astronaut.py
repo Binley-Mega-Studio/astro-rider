@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
         
         radians = math.atan2(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2))
 
-        self.angle = math.degrees(round(radians))
+        self.angle = math.degrees(radians)
         
         self.distance = int(math.hypot(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2)))
         

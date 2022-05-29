@@ -29,7 +29,7 @@ class Player(pygame.sprite.Sprite):
         self.acceleration = pygame.math.Vector2(0, self.gravity)
         
     def render(self, game, play_data):
-        
+        self.update(game)
         scaled_image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
         rotated_image = pygame.transform.rotate(scaled_image, 360 - self.angle)
         
@@ -40,22 +40,18 @@ class Player(pygame.sprite.Sprite):
             
         #game.window.blit(scaled_image, (self.x, self.y))
         game.window.blit(rotated_image, (self.x - int(rotated_image.get_width() /2), self.y - int(rotated_image.get_height() /2))) #changed
-        self.update(game)
+        
         
         return None
         
     def update(self,game):
         
         mouse = pygame.mouse.get_pos()
-        self.a = mouse[1] - (self.y + self.HEIGHT / 2)
-        self.b = mouse[0] - (self.x + self.WIDTH / 2)
         
         radians = math.atan2(mouse[1] - (self.y), mouse[0] - (self.x))
-
+        
         self.angle = math.degrees(radians)
         
         self.distance = int(math.hypot(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2)))
         
         self.distance_x, self.distance_y = math.cos(radians), math.sin(radians)
-        
-        

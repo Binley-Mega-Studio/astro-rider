@@ -32,15 +32,15 @@ class Player(pygame.sprite.Sprite):
         
         
         scaled_image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-        rotated_image = pygame.transform.rotate(scaled_image, self.angle)
+        rotated_image = pygame.transform.rotate(scaled_image, 360 - round(self.angle))
         
         if self.distance:
             self.distance -= 1
             self.x += self.distance_x
             self.y += self.distance_y
             
-        game.window.blit(scaled_image, (self.x, self.y))
-        
+        #game.window.blit(scaled_image, (self.x, self.y))
+        game.window.blit(rotated_image, (self.x, self.y)) #changed
         self.update(game)
         
         return {
@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
         
         radians = math.atan2(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2))
 
-        self.angle = math.degrees(radians)
+        self.angle = math.degrees(round(radians))
         
         self.distance = int(math.hypot(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2)))
         

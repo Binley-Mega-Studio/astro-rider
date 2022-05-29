@@ -1,5 +1,5 @@
 from curses import window
-from re import X
+
 import pygame
 import math
 
@@ -23,7 +23,7 @@ class Planet(pygame.sprite.Sprite):
         planet = pygame.transform.scale(self.image,(self.width, self.height))
         gravity = pygame.transform.scale(self.circle,(self.width*2,self.height*2))
         
-        #game.window.blit(planet, (self.x, self.y))
+        game.window.blit(planet, (self.x, self.y))
         game.window.blit(gravity, (self.x, self.y)) 
         self.update(game)
         

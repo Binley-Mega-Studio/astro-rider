@@ -14,9 +14,11 @@ class Play:
         
     def render(self, game):
         
-        game.window.fill((48, 48, 48))
+        game.window.fill((0, 0, 0))
         
-        self.player.render(game)
+        #self.planet_data = self.planet.render(game)
+        
+        self.player_data = self.player.render(game, self)
         
 
         return {

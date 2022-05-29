@@ -28,11 +28,10 @@ class Player(pygame.sprite.Sprite):
         self.gravity = 0 # changes with position to planet
         self.acceleration = pygame.math.Vector2(0, self.gravity)
         
-    def render(self, game):
-        
+    def render(self, game, play_data):
         
         scaled_image = pygame.transform.scale(self.image, (self.WIDTH, self.HEIGHT))
-        rotated_image = pygame.transform.rotate(scaled_image, 360 - round(self.angle))
+        rotated_image = pygame.transform.rotate(scaled_image, 360 - self.angle)
         
         if self.distance:
             self.distance -= 1
@@ -40,13 +39,10 @@ class Player(pygame.sprite.Sprite):
             self.y += self.distance_y
             
         #game.window.blit(scaled_image, (self.x, self.y))
-        game.window.blit(rotated_image, (self.x, self.y)) #changed
+        game.window.blit(rotated_image, (self.x - int(rotated_image.get_width() /2), self.y - int(rotated_image.get_height() /2))) #changed
         self.update(game)
         
-        return {
-            'state': game.data,
-            'run': True
-        }
+        return None
         
     def update(self,game):
         
@@ -54,15 +50,12 @@ class Player(pygame.sprite.Sprite):
         self.a = mouse[1] - (self.y + self.HEIGHT / 2)
         self.b = mouse[0] - (self.x + self.WIDTH / 2)
         
-        radians = math.atan2(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2))
+        radians = math.atan2(mouse[1] - (self.y), mouse[0] - (self.x))
 
         self.angle = math.degrees(radians)
         
         self.distance = int(math.hypot(mouse[1] - (self.y + self.HEIGHT / 2), mouse[0] - (self.x + self.WIDTH / 2)))
         
         self.distance_x, self.distance_y = math.cos(radians), math.sin(radians)
-
-
-        
         
         

@@ -16,6 +16,7 @@ FPS = 60
 INITIAL_state = 1
 GAME_TITLE = 'Astro Rider'
 
+
 class Game:
     '''
     state 0: Start menu (Play button, settings, level select, exit game)
@@ -33,6 +34,8 @@ class Game:
         self.SIZE = self.WIDTH, self.HEIGHT = int(display_info.current_w/2), int(display_info.current_h/2)
         self.window = pygame.display.set_mode(self.SIZE)
         pygame.display.set_caption(self.TITLE)
+        
+        self.level = 1
         
         self.__start = Start()
         self.__play = Play()

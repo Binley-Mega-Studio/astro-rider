@@ -1,22 +1,23 @@
-import pygame
 from pygame.locals import *
-
+from level_1 import Level1
 
 class Level:
     '''
-    Actual gameplay
-    Contents: (Actual gameplay)
+    Level Loader
+    Contents: load_level, render
     '''
     def __init__(self):
-        pass
+        self.levels = [Level1]
+        self.level_loaded = None
+        
+    def load_level(self, game):
+        if self.level_loaded is None:
+            self.level_loaded = self.levels[game.level]
+    
     def render(self, game):
         
-        game.window.fill((0, 0, 0))
-        
-        #self.planet_data = self.planet.render(game)
-        
-        self.player_data = self.player.render(game, self)
-        
+        self.level_loaded.render(game)
+
 
         return {
             'state': self.state,

@@ -1,16 +1,13 @@
-from curses import window
-
 import pygame
 import math
 
-from sprites.astronaut import Player
-
 class Planet(pygame.sprite.Sprite):
-    def __init__(self,image,x,y):
+    def __init__(self,image,x,y,game,player):
+        self.player = player
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load(image)
-        self.circle = pygame.draw.circle(window, (0,0,0) , (x,y), 100 ) #Will continue and fix tomorrow
-        self.active = (self.circle).collideract(Player)
+        self.circle = pygame.draw.circle(game.window, (0,0,0) , (x,y), 100 ) #Will continue and fix tomorrow
+        self.active = (self.circle).collideract(self.player)
         
         self.x = x
         self.y = y

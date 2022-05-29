@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
-from sprites import astronaut
+from levels import level
+from sprites import astronaut,planet
 
 
 class Play:
@@ -11,6 +12,7 @@ class Play:
     def __init__(self):
         self.state = 1
         self.player = astronaut.Player()
+        self.level = level.Level()
         
     def render(self, game):
         

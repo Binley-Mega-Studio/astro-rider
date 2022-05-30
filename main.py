@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 
+
 from pause import Pause
 from play import Play
 from start import Start
@@ -38,7 +39,7 @@ class Game:
         self.level = 1
         
         self.__start = Start()
-        self.__play = Play()
+        self.__play = Play(self)
         self.__pause = Pause()
         self.__run = True
         

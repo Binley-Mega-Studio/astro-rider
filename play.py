@@ -1,5 +1,5 @@
 from pygame.locals import *
-
+from levels import *
 from levels import level
 from sprites import astronaut
 
@@ -15,13 +15,12 @@ class Play:
         self.level = level.Level(game)
         
     def render(self, game):
-        
         game.window.fill((0, 0, 0))
-        
+        self.level.render(game) 
         #self.planet_data = self.planet.render(game)
         
         self.player_data = self.player.render(game, self)
-        
+    
 
         return {
             'state': self.state,
